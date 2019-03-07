@@ -50,5 +50,28 @@ namespace RecipeBox.Controllers
             ingredient.AddRecipe(recipe);
             return RedirectToAction("Show",  new { id = ingredientId });
         }
+
+        [HttpGet("/ingredients/{ingredientId}/edit")]
+        public ActionResult Edit(int ingredientId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Ingredient ingredient = Ingredient.Find(ingredientId);
+            model.Add("ingredient", ingredient);
+            return View(model);
+        }
+
+        [HttpPost("/ingredients/{ingredientId}")]
+        public ActionResult Update(int ingredientId, string name)
+        {
+            Ingredient ingredient = Ingredient.Find(ingredientId);
+            ingredient.Edit(name);
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            List<Recipe> ingredientRecipes = ingredient.GetRecipes();
+            List<Recipe> allRecipes = Recipe.GetAll();
+            model.Add("selectedIngredient", ingredient);
+            model.Add("ingredientRecipes", ingredientRecipes);
+            model.Add("allRecipes", allRecipes);
+            return View("Show", model);
+        }
     }
 }

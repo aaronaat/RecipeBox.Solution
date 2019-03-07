@@ -14,6 +14,10 @@
     </ol>
 }
 
+<h1>Recipe Instructions:</h1>
+<h3>@Model["recipe"].GetInstructions()</h3> 
+
+
 <h4>Add an ingredient for this recipe:</h4>
 
 <form action='/recipes/@Model["recipe"].GetId()/ingredients/new' method='post'>
