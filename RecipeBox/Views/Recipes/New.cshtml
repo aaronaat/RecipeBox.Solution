@@ -1,0 +1,15 @@
+<h1>Add a recipe</h1>
+<p>Add a recipe here:</p>
+
+<form action="/recipes" method="post">
+  <label for="recipeName">Name of food:</label>
+  <input id="recipeName" name="recipeName" type="text">
+  <label for="recipeInstructions">Full instructions for recipe:</label>
+  <input id="recipeInstructions" name="recipeInstructions" type="text">
+  <label for="recipeRating">Rating 1-10:</label>
+  <input id="recipeRating" name="recipeRating" type="number">
+  <button type="submit">Add</button>
+</form>
+
+<p><a href="/">Back home</a></p>
+<p><a href="/recipes">Back to all recipes.</a></p>

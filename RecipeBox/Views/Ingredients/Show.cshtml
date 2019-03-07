@@ -1,0 +1,35 @@
+@using RecipeBox.Models;
+
+<h1>Ingredient Details: </h1>
+
+<h2>@Model["selectedIngredient"].GetName()</h2>
+
+@if (@Model["ingredientRecipes"].Count != 0)
+{
+    <h4>This ingredient is used in these recipes:</h4>
+    <ul>
+    @foreach (Recipe recipe in @Model["ingredientRecipes"])
+    {
+        <li>@recipe.GetRecipeName()</li>
+    }
+    </ul>
+}
+
+<h4>Add a recipe to this ingredient:</h4>
+
+<form action='/ingredients/@Model["selectedIngredient"].GetId()/recipes/new' method='post'>
+    <label for='recipeId'>Select a recipe</label>
+    <select id='recipeId' name='recipeId' type='text'>
+    @foreach (var recipe in @Model["allRecipes"])
+    {
+        <option value='@recipe.GetId()'>@recipe.GetRecipeName()</option>
+    }
+    </select>
+    <button type='submit'>Add</button>
+</form>
+
+
+<a href='/ingredients/new'>Add another item</a>
+<a href='/ingredients/@Model["selectedIngredient"].GetId()/edit'>Update item</a>
+<a href='/ingredients/@Model["selectedIngredient"].GetId()/delete'>Delete this item</a>
+<a href='/recipes'>View all recipes</a>
